@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>VIP Car Rental</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="tablet" id="tablet">
+        <!-- HEADER -->
+        <div class="header">
+            <div class="title">
+                <svg class="title-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M5 17H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v10a2 2 0 0 1-2 2h-1"/>
+                    <polygon points="12 15 17 21 7 21 12 15"/>
+                </svg>
+                Concessionária VIP
+            </div>
+            <button class="close-btn" id="closeBtn">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <line x1="18" y1="6" x2="6" y2="18"></line>
+                    <line x1="6" y1="6" x2="18" y2="18"></line>
+                </svg>
+            </button>
+        </div>
+
+        <!-- CONTENT -->
+        <div class="content">
+            <!-- SIDEBAR -->
+            <div class="sidebar">
+                <button class="sidebar-btn active" data-tab="dashboard">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <rect x="3" y="3" width="7" height="7"></rect>
+                        <rect x="14" y="3" width="7" height="7"></rect>
+                        <rect x="14" y="14" width="7" height="7"></rect>
+                        <rect x="3" y="14" width="7" height="7"></rect>
+                    </svg>
+                    Dashboard
+                </button>
+                <button class="sidebar-btn" data-tab="rent">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/>
+                        <circle cx="9" cy="7" r="4"/>
+                        <path d="M22 21v-2a4 4 0 0 0-3-3.87"/>
+                        <path d="M16 3.13a4 4 0 0 1 0 7.75"/>
+                    </svg>
+                    Alugar Carros
+                </button>
+                <button class="sidebar-btn" data-tab="myrentals">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <rect x="1" y="3" width="15" height="13"></rect>
+                        <polygon points="16 8 20 8 23 11 23 16 16 16 16 8"></polygon>
+                        <circle cx="5.5" cy="18.5" r="2.5"></circle>
+                        <circle cx="18.5" cy="18.5" r="2.5"></circle>
+                    </svg>
+                    Meus Aluguéis
+                </button>
+
+                <div class="sidebar-divider"></div>
+
+                <div class="wallet-info">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <rect x="1" y="4" width="22" height="16" rx="2" ry="2"></rect>
+                        <line x1="1" y1="10" x2="23" y2="10"></line>
+                    </svg>
+                    <div>
+                        <span class="wallet-label">Saldo</span>
+                        <strong class="wallet-amount" id="walletAmount">0</strong>
+                    </div>
+                </div>
+            </div>
+
+            <!-- MAIN CONTENT -->
+            <div class="main">
+                <!-- DASHBOARD TAB -->
+                <div class="tab-content active" id="dashboardTab">
+                    <h2>Dashboard</h2>
+                    <div class="stats-grid">
+                        <div class="stat-card">
+                            <div class="stat-icon blue">
+                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <circle cx="12" cy="12" r="10"></circle>
+                                    <polyline points="12 6 12 12 16 14"></polyline>
+                                </svg>
+                            </div>
+                            <div class="stat-info">
+                                <span class="stat-label">Carros Disponíveis</span>
+                                <strong class="stat-value" id="availableCount">0</strong>
+                            </div>
+                        </div>
+                        <div class="stat-card">
+                            <div class="stat-icon green">
+                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path>
+                                    <polyline points="22 4 12 14.01 9 11.01"></polyline>
+                                </svg>
+                            </div>
+                            <div class="stat-info">
+                                <span class="stat-label">Carros Alugados</span>
+                                <strong class="stat-value" id="rentedCount">0</strong>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="section-header">
+                        <h3>Atividade Recente</h3>
+                    </div>
+                    <div id="recentActivity" class="activity-list"></div>
+                </div>
+
+                <!-- RENT TAB -->
+                <div class="tab-content" id="rentTab">
+                    <div class="tab-header">
+                        <h2>Catálogo de Veículos VIP</h2>
+                        <div class="search-box">
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <circle cx="11" cy="11" r="8"></circle>
+                                <path d="m21 21-4.35-4.35"></path>
+                            </svg>
+                            <input type="text" id="searchInput" placeholder="Pesquisar veículo...">
+                        </div>
+                    </div>
+
+                    <div class="vehicle-grid" id="vehicleGrid"></div>
+                </div>
+
+                <!-- MY RENTALS TAB -->
+                <div class="tab-content" id="myrentalsTab">
+                    <h2>Meus Veículos Alugados</h2>
+                    <div id="rentalsList" class="rentals-list"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- MODAL DE ALUGUEL -->
+    <div class="modal-overlay" id="rentalModal">
+        <div class="modal">
+            <div class="modal-header">
+                <h3 id="modalTitle">Alugar Veículo</h3>
+                <button class="modal-close" id="modalClose">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <line x1="18" y1="6" x2="6" y2="18"></line>
+                        <line x1="6" y1="6" x2="18" y2="18"></line>
+                    </svg>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="modal-vehicle-info">
+                    <h4 id="modalVehicleName">-</h4>
+                    <p id="modalVehicleBrand">-</p>
+                </div>
+
+                <div class="form-group">
+                    <label>Período de Aluguel</label>
+                    <div class="fixed-period">
+                        <span class="period-value">30 dias fixos</span>
+                        <span class="period-note">Todos os aluguéis têm duração fixa de 30 dias</span>
+                    </div>
+                </div>
+
+                <div class="price-summary">
+                    <div class="price-row">
+                        <span>Preço por dia</span>
+                        <strong id="pricePerDay">0</strong>
+                    </div>
+                    <div class="price-row">
+                        <span>Período fixo</span>
+                        <strong>30 dias</strong>
+                    </div>
+                    <div class="price-divider"></div>
+                    <div class="price-row total">
+                        <span>Total a pagar</span>
+                        <strong id="totalPrice">0</strong>
+                    </div>
+                    <div class="discount-info" id="discountInfo" style="display: none;">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <circle cx="12" cy="12" r="10"></circle>
+                            <polyline points="12 6 12 12 16 14"></polyline>
+                        </svg>
+                        <span>Desconto de 10% aplicado na renovação!</span>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-secondary" id="btnCancel">Cancelar</button>
+                <button class="btn btn-test" id="btnTestDrive">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <circle cx="12" cy="12" r="10"></circle>
+                        <polygon points="10 8 16 12 10 16 10 8"></polygon>
+                    </svg>
+                    Test-Drive
+                </button>
+                <button class="btn btn-primary" id="btnConfirm">Confirmar</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
